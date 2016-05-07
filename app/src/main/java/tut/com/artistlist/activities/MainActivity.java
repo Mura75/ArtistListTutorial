@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     private RestClient restClient;
 
+    private ProgressBar pbMain;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        pbMain = (ProgressBar)findViewById(R.id.pbMain);
     }
 
     private void setAdapter() {
@@ -57,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Artist>>() {
             @Override
             public void onResponse(Call<List<Artist>> call, Response<List<Artist>> response) {
+                pbMain.setVisibility(View.GONE);
                 Log.d("Artist_result", response.isSuccessful() + " " + response.message());
                 if (response.isSuccessful()) {
                     artistList.addAll(response.body());

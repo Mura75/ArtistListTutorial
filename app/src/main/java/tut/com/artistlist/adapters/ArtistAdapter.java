@@ -39,7 +39,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     public void onBindViewHolder(final ArtistViewHolder holder, int position) {
         Artist artist = artistList.get(position);
         holder.tvArtistName.setText(artist.getName());
-        holder.tvArtistGenres.setText(artist.getGenres() + "");
+        holder.tvArtistGenres.setText(artist.getArtistGenres());
 
         Picasso.with(holder.context)
                 .load(artist.getCover().getSmall())

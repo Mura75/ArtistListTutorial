@@ -3,6 +3,7 @@ package tut.com.artistlist.models;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Murager on 07.05.2016.
@@ -32,6 +33,15 @@ public class Artist {
 
     @SerializedName("cover")
     private Cover cover;
+
+    public String getArtistGenres() {
+        List<String> genresStr = Arrays.asList(genres);
+        String str = "";
+        for (String g : genres) {
+            str += g + " ";
+        }
+        return str;
+    }
 
     public int getId() {
         return id;

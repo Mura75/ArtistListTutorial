@@ -10,4 +10,14 @@
         android:layout_height="match_parent"
         android:id="@+id/recyclerView"/>
 
+    <ProgressBar
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:id="@+id/pbMain"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:indeterminate="false" />
+
+
 </RelativeLayout>
