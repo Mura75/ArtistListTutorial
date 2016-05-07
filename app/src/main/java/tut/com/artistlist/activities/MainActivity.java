@@ -1,5 +1,7 @@
 package tut.com.artistlist.activities;
 
+import android.os.Handler;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,7 +21,9 @@ import tut.com.artistlist.adapters.ArtistAdapter;
 import tut.com.artistlist.models.Artist;
 import tut.com.artistlist.utils.RestClient;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private RecyclerView recyclerView;
 
@@ -46,7 +50,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
         pbMain = (ProgressBar)findViewById(R.id.pbMain);
+
+        swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(this);
     }
 
     private void setAdapter() {
@@ -67,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     artistList.addAll(response.body());
                     artistAdapter.notifyDataSetChanged();
+
                 }
             }
 
@@ -75,5 +84,19 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onRefresh() {
+        artistList.clear();
+        recyclerView.setAdapter(null);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                setAdapter();
+                getArtists();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        }, 1000);
     }
 }

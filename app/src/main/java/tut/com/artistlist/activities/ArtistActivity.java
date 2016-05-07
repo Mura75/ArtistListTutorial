@@ -46,7 +46,7 @@ public class ArtistActivity extends AppCompatActivity {
 
     private void setData(Artist artist) {
         Picasso.with(this).load(artist.getCover().getBig()).into(ivCoverBig);
-        
+
         tvName.setText(artist.getName());
         tvGenres.setText("Genres: " + artist.getArtistGenres());
         tvAlbums.setText("Albums: " + artist.getAlbums());
