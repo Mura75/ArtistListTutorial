@@ -1,5 +1,7 @@
 package tut.com.artistlist.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Arrays;
 
 /**
@@ -7,20 +9,28 @@ import java.util.Arrays;
  */
 public class Artist {
 
+    @SerializedName("id")
     private int id;
 
+    @SerializedName("name")
     private String name;
 
+    @SerializedName("tracks")
     private int tracks;
 
+    @SerializedName("albums")
     private int albums;
 
+    @SerializedName("link")
     private String link;
 
+    @SerializedName("description")
     private String description;
 
+    @SerializedName("genres")
     private String[] genres;
 
+    @SerializedName("cover")
     private Cover cover;
 
     public int getId() {
