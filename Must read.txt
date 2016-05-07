@@ -1,0 +1,5 @@
+1 Sign APK
+2 Proguard
+3 Google play publication
+4 Material design (Animation effects)
+4 ORM (https://habrahabr.ru/post/281226/)
