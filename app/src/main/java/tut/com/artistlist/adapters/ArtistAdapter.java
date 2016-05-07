@@ -6,7 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -32,10 +36,25 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
     }
 
     @Override
-    public void onBindViewHolder(ArtistViewHolder holder, int position) {
+    public void onBindViewHolder(final ArtistViewHolder holder, int position) {
         Artist artist = artistList.get(position);
         holder.tvArtistName.setText(artist.getName());
         holder.tvArtistGenres.setText(artist.getGenres() + "");
+
+        Picasso.with(holder.context)
+                .load(artist.getCover().getSmall())
+                .into(holder.ivCoverSmall, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            holder.pbCoverSmall.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            holder.pbCoverSmall.setVisibility(View.GONE);
+                            holder.ivCoverSmall.setImageResource(android.R.drawable.ic_delete);
+                        }
+        });
     }
 
     @Override
@@ -48,6 +67,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
         private Context context;
         private ImageView ivCoverSmall;
         private TextView tvArtistName, tvArtistGenres;
+        private ProgressBar pbCoverSmall;
 
         public ArtistViewHolder(View itemView) {
             super(itemView);
@@ -55,6 +75,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtistView
             ivCoverSmall = (ImageView)itemView.findViewById(R.id.ivCoverSmall);
             tvArtistName = (TextView)itemView.findViewById(R.id.tvArtistName);
             tvArtistGenres = (TextView)itemView.findViewById(R.id.tvArtistGenres);
+            pbCoverSmall = (ProgressBar)itemView.findViewById(R.id.pbCoverSmall);
         }
     }
 }

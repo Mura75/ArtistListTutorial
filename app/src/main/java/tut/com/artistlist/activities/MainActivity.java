@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private void getArtists() {
         restClient = new RestClient();
 
-        Call<List<Artist>> call = restClient.getApi().getAllArtists("");
+        Call<List<Artist>> call = restClient.getApi().getAllArtists();
 
         call.enqueue(new Callback<List<Artist>>() {
             @Override

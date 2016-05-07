@@ -6,13 +6,27 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="8dp">
 
-        <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:id="@+id/ivCoverSmall"
-            android:src="@mipmap/ic_launcher" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:id="@+id/ivCoverSmall"
+                android:src="@mipmap/ic_launcher" />
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pbCoverSmall"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:indeterminate="false" />
+        </RelativeLayout>
 
         <LinearLayout
             android:orientation="vertical"
@@ -27,16 +41,17 @@
                 android:text="Large Text"
                 android:id="@+id/tvArtistName"
                 android:layout_weight="1"
-                android:paddingTop="8dp" />
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/tvArtistGenres"
-                android:layout_weight="1"
-                android:paddingTop="4dp" />
+                android:paddingTop="12dp"
+                android:paddingBottom="4dp" />
         </LinearLayout>
 
     </LinearLayout>

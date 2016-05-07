@@ -14,7 +14,7 @@ import tut.com.artistlist.models.Artist;
  */
 public class RestClient {
 
-    private static final String BASE_URL = "http://cache-kz01.cdn.yandex.net/download.cdn.yandex.net/mobilization-2016/artists.json";
+    private static final String BASE_URL = "http://cache-kz01.cdn.yandex.net/download.cdn.yandex.net/";
 
     private ApiInterface api;
 
@@ -32,7 +32,7 @@ public class RestClient {
     }
 
     public interface ApiInterface {
-        @GET
-        Call<List<Artist>> getAllArtists(@Url String url);
+        @GET("mobilization-2016/artists.json")
+        Call<List<Artist>> getAllArtists();
     }
 }
